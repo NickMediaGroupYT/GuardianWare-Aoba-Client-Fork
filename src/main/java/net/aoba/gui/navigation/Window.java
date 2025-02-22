@@ -170,7 +170,7 @@ public class Window extends UIElement {
 				position.setY(interpolatedY);
 			} else if (this.isResizing) {
 				switch (grabDirection) {
-				case Direction.Top:
+				case Top:
 					float newHeightTop = getActualSize().getHeight() - (float) mouseDeltaY;
 
 					if (minHeight != null && newHeightTop < minHeight.floatValue())
@@ -182,7 +182,7 @@ public class Window extends UIElement {
 					position.setY(getActualSize().getY() + (float) mouseDeltaY);
 					position.setHeight(newHeightTop);
 					break;
-				case Direction.Bottom:
+				case Bottom:
 					float newHeightBottom = getActualSize().getHeight() + (float) mouseDeltaY;
 
 					if (minHeight != null && newHeightBottom < minHeight.floatValue())
@@ -193,7 +193,7 @@ public class Window extends UIElement {
 
 					position.setHeight(newHeightBottom);
 					break;
-				case Direction.Left:
+				case Left:
 					float newWidthLeft = getActualSize().getWidth() - (float) mouseDeltaX;
 					if (minWidth != null && newWidthLeft < minWidth.floatValue())
 						break;
@@ -204,7 +204,7 @@ public class Window extends UIElement {
 					position.setX(getActualSize().getX() + (float) mouseDeltaX);
 					position.setWidth(newWidthLeft);
 					break;
-				case Direction.Right:
+				case Right:
 					float newWidthRight = getActualSize().getWidth() + (float) mouseDeltaX;
 					if (minWidth != null && newWidthRight < minWidth.floatValue())
 						break;
