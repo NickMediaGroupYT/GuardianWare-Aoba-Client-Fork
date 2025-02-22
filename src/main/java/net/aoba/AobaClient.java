@@ -45,7 +45,7 @@ import java.util.List;
 
 public class AobaClient
 {
-    public static final String AOBA_VERSION = "1.4.4";
+    public static final String AOBA_VERSION = "Public Build v0.1";
 
     public static MinecraftClient MC;
     public static IMinecraftClient IMC;
