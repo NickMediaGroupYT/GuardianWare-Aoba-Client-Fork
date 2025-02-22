@@ -108,7 +108,7 @@ public class EntityESP extends Module implements Render3DListener {
 					Color color = getColorForEntity(entity);
 					if (color != null) {
 						switch (drawMode.getValue()) {
-						case DrawMode.BoundingBox:
+						case BoundingBox:
 							double interpolatedX = MathHelper.lerp(partialTicks, entity.prevX, entity.getX());
 							double interpolatedY = MathHelper.lerp(partialTicks, entity.prevY, entity.getY());
 							double interpolatedZ = MathHelper.lerp(partialTicks, entity.prevZ, entity.getZ());
@@ -117,7 +117,7 @@ public class EntityESP extends Module implements Render3DListener {
 									interpolatedY - entity.getY(), interpolatedZ - entity.getZ());
 							Render3D.draw3DBox(matrixStack, boundingBox, color, lineThickness.getValue());
 							break;
-						case DrawMode.Model:
+						case Model:
 							Render3D.drawEntityModel(matrixStack, partialTicks, entity, color);
 							break;
 						}
