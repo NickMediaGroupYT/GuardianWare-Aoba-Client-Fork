@@ -108,9 +108,9 @@ public class RotationManager implements TickListener, Render3DListener, SendPack
 		Rotation currentGoalRotation = currentGoal.getGoalRotation(tickDelta);
 
 		switch (currentGoal.getRotationMode()) {
-		case RotationMode.NONE:
+		case NONE:
 			return null;
-		case RotationMode.SMOOTH:
+		case SMOOTH:
 			// Gets the difference between the players view and the goal.
 			Rotation difference = Rotation.difference(new Rotation(startYaw, startPitch), currentGoalRotation);
 
@@ -132,7 +132,7 @@ public class RotationManager implements TickListener, Render3DListener, SendPack
 			Rotation newRotation = new Rotation(startYaw + maxYawRotationDelta, startPitch + maxPitchRotation)
 					.roundToGCD().clamp();
 			return newRotation;
-		case RotationMode.INSTANT:
+		case INSTANT:
 			return currentGoalRotation;
 		default:
 			return null;
