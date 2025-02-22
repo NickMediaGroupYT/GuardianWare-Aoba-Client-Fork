@@ -97,13 +97,13 @@ public class GoToWindow extends Window implements TickListener, Render3DListener
 		pathfinderMode = EnumSetting.<Pathfinder>builder().id("goto_pathfinder_mode").displayName("Mode")
 				.defaultValue(Pathfinder.Walk).onUpdate(var -> {
 					switch (var) {
-					case Pathfinder.Fly:
+					case Fly:
 						pathManager = new FlyPathManager();
 						break;
-					case Pathfinder.Walk:
+					case Walk:
 						pathManager = new WalkingPathManager();
 						break;
-					case Pathfinder.Teleport:
+					case Teleport:
 						pathManager = new TeleportPathManager();
 						break;
 					}
@@ -414,7 +414,7 @@ public class GoToWindow extends Window implements TickListener, Render3DListener
 			Vec3d nextCenterPos = next.pos.toBottomCenterPos();
 
 			switch (pathfinderMode.getValue()) {
-			case Pathfinder.Fly:
+			case Fly:
 				double velocity = Math.min(maxSpeed.getValue(), MC.player.getPos().distanceTo(nextCenterPos));
 				Vec3d direction = nextCenterPos.subtract(MC.player.getPos()).normalize().multiply(velocity);
 
@@ -427,7 +427,7 @@ public class GoToWindow extends Window implements TickListener, Render3DListener
 				} else
 					MC.player.setVelocity(direction);
 				break;
-			case Pathfinder.Walk:
+			case Walk:
 				MC.player.getAbilities().flying = false;
 				MC.player.lookAt(EntityAnchor.EYES, new Vec3d(nextCenterPos.x, MC.player.getEyeY(), nextCenterPos.z));
 				MC.options.forwardKey.setPressed(true);
@@ -436,7 +436,7 @@ public class GoToWindow extends Window implements TickListener, Render3DListener
 				else
 					MC.options.jumpKey.setPressed(false);
 				break;
-			case Pathfinder.Teleport:
+			case Teleport:
 				int packetsRequired = (int) Math.ceil(MC.player.getPos().distanceTo(nextCenterPos) / 10) - 1;
 
 				for (int i = 0; i < packetsRequired; i++) {
