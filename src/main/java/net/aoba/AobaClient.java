@@ -86,20 +86,20 @@ public class AobaClient
      */
     public void loadAssets()
     {
-        LOGGER.info("[Aoba] Starting Client");
+        LOGGER.info("[GuardianWare] Starting Client");
         eventManager = new EventManager();
 
         // Register any addons.
-        LogUtils.getLogger().info("[Aoba] Starting addon initialization");
+        LogUtils.getLogger().info("[GuardianWare] Starting addon initialization");
         for (EntrypointContainer<IAddon> entrypoint : FabricLoader.getInstance().getEntrypointContainers("aoba", IAddon.class))
         {
             IAddon addon = entrypoint.getEntrypoint();
 
             try
             {
-                LOGGER.info("[Aoba] Initializing addon: " + addon.getName());
+                LOGGER.info("[GuardianWare] Initializing addon: " + addon.getName());
                 addon.onInitialize();
-                LOGGER.info("[Aoba] Addon initialized: " + addon.getName());
+                LOGGER.info("[GuardianWare] Addon initialized: " + addon.getName());
             } catch (Throwable e)
             {
                 LOGGER.error("Error initializing addon: " + addon.getName(), e.getMessage());
@@ -108,45 +108,45 @@ public class AobaClient
             addons.add(addon);
         }
 
-        LOGGER.info("[Aoba] Reading Settings");
+        LOGGER.info("[GuardianWare] Reading Settings");
         settingManager = new SettingManager();
 
-        LOGGER.info("[Aoba] Reading Friends List");
+        LOGGER.info("[GuardianWare] Reading Friends List");
         friendsList = new FriendsList();
 
-        LOGGER.info("[Aoba] Initializing Rotation Manager");
+        LOGGER.info("[GuardianWare] Initializing Rotation Manager");
         rotationManager = new RotationManager();
 
-        LOGGER.info("[Aoba] Initializing Modules");
+        LOGGER.info("[GuardianWare] Initializing Modules");
         moduleManager = new ModuleManager(addons);
 
-        LOGGER.info("[Aoba] Initializing Commands");
+        LOGGER.info("[GuardianWare] Initializing Commands");
         commandManager = new CommandManager(addons);
 
-        LOGGER.info("[Aoba] Initializing Font Manager");
+        LOGGER.info("[GuardianWare] Initializing Font Manager");
         fontManager = new FontManager();
         fontManager.Initialize();
 
-        LOGGER.info("[Aoba] Initializing Combat Manager");
+        LOGGER.info("[GuardianWare] Initializing Combat Manager");
         combatManager = new CombatManager();
 
-        LOGGER.info("[Aoba] Initializing Entity Manager");
+        LOGGER.info("[GuardianWare] Initializing Entity Manager");
         entityManager = new EntityManager();
 
-        LOGGER.info("[Aoba] Initializing Macro Manager");
+        LOGGER.info("[GuardianWare] Initializing Macro Manager");
         macroManager = new MacroManager();
 
-        LOGGER.info("[Aoba] Initializing GUI");
+        LOGGER.info("[GuardianWare] Initializing GUI");
         guiManager = new GuiManager();
         guiManager.Initialize();
 
-        LOGGER.info("[Aoba] Initializing Alt Manager");
+        LOGGER.info("[GuardianWare] Initializing Alt Manager");
         altManager = new AltManager();
 
-        LOGGER.info("[Aoba] Initializing Proxy Manager");
+        LOGGER.info("[GuardianWare] Initializing Proxy Manager");
         proxyManager = new ProxyManager();
 
-        LOGGER.info("[Aoba] Registering Shutdown Hook");
+        LOGGER.info("[GuardianWare] Registering Shutdown Hook");
         Runtime.getRuntime().addShutdownHook(new Thread(() ->
         {
             try
@@ -158,15 +158,15 @@ public class AobaClient
             }
         }));
 
-        LOGGER.info("[Aoba] Loading Settings");
+        LOGGER.info("[GuardianWare] Loading Settings");
         SettingManager.loadGlobalSettings();
         SettingManager.loadSettings();
 
-        LOGGER.info("[Aoba] Initializing Global Chat");
+        LOGGER.info("[GuardianWare] Initializing Global Chat");
         globalChat = new GlobalChat();
         globalChat.StartListener();
 
-        LOGGER.info("[Aoba] Aoba-chan initialized and ready to play!");
+        LOGGER.info("[GuardianWare] Guardian-chan initialized and ready to play!");
 
         // GuiManager.borderColor.setMode(ColorMode.Rainbow);
         // GuiManager.foregroundColor.setMode(ColorMode.Random);
@@ -176,7 +176,7 @@ public class AobaClient
      * Called when the client is shutting down. Saves persistent data.
      */
     public void endClient() {
-        LOGGER.info("[Aoba] Shutting down");
+        LOGGER.info("[GuardianWare] Shutting down");
         try {
             SettingManager.saveSettings();
             altManager.saveAlts();
@@ -184,7 +184,7 @@ public class AobaClient
             macroManager.save();
             moduleManager.modules.forEach(Module::onDisable);
         } catch (Exception e) {
-            LOGGER.error("[Aoba] Error saving data", e);
+            LOGGER.error("[GuardianWare] Error saving data", e);
         }
     }
 }
