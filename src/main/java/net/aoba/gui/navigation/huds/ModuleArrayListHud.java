@@ -85,7 +85,7 @@ public class ModuleArrayListHud extends HudWindow {
 						.sorted(Comparator.comparing((mod) -> ((Module) mod).getName()));
 
 				switch (textAlign.getValue()) {
-				case TextAlign.Left:
+				case Left:
 					moduleStream.forEachOrdered(mod -> {
 						float yPosition = pos.getY().floatValue() + 10 + (iteration.get() * 20);
 						Render2D.drawString(drawContext, mod.getName(), pos.getX(), yPosition,
@@ -93,7 +93,7 @@ public class ModuleArrayListHud extends HudWindow {
 						iteration.incrementAndGet();
 					});
 					break;
-				case TextAlign.Center:
+				case Center:
 					moduleStream.forEachOrdered(mod -> {
 						float yPosition = pos.getY().floatValue() + 10 + (iteration.get() * 20);
 						float centerTextWidth = Render2D.getStringWidth(mod.getName()) / 2.0f;
@@ -103,7 +103,7 @@ public class ModuleArrayListHud extends HudWindow {
 						iteration.incrementAndGet();
 					});
 					break;
-				case TextAlign.Right:
+				case Right:
 					moduleStream.forEachOrdered(mod -> {
 						float yPosition = pos.getY().floatValue() + 10 + (iteration.get() * 20);
 						float rightTextWidth = Render2D.getStringWidth(mod.getName());
